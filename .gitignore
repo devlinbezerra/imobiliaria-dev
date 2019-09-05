@@ -1,4 +1,7 @@
+.log*
+node_modules
 .DS_Store
+assets/scripts/praticando.js
 
 application/cache/*
 !application/cache/index.html

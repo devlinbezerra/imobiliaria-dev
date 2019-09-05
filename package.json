@@ -1,0 +1,32 @@
+{
+  "name": "facill_imobiliaria",
+  "version": "1.0.0",
+  "description": "Sistema de gestão de imóveis.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcit-ci/CodeIgniter.git"
+  },
+  "author": "Devlin R S Bezerra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bcit-ci/CodeIgniter/issues"
+  },
+  "homepage": "https://github.com/bcit-ci/CodeIgniter#readme",
+  "dependencies": {
+    "axios": "^0.19.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
