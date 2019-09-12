@@ -8,6 +8,27 @@ class Model_dados_bancarios extends MY_Model {
         $this->table = 'dados_bancarios';
     }
 
+    public function update($data){
+        $pk = $this->primary_key;
+        if(!isset($data[$pk])){
+          $pk = $this->secondary_key;  
+        }
+        if(parent::check_exclusive_fields($data)){
+            $this->db->where($pk,$data[$pk]);
+            $this->db->update($this->table,$data);
+            $status = array(
+                'status' => true,
+                'message' => 'Alterado com sucesso!'
+            );
+        }else{
+            $status = array(
+                'status' => false,
+                'message' => 'Erro: Já existe algum registro com essas informações.'
+            );
+        }
+        echo json_encode($status);
+    }
+
     public function delete($data){
         $pk = $this->primary_key;
         if(!isset($data[$pk])){

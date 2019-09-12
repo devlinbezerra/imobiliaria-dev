@@ -1,10 +1,14 @@
 import view from './../view';
 import model from './../model';
-import { inserirBanco } from './bancoController';
+import {
+	inserirBanco,
+	getBanco,
+	deleteBank,
+	updateBank
+} from './bancoController';
 
 /*
 PROBLEMAS
-Pega só a penúltima alteração que é feito no campo
 Quando altera a data sai bugada
 */
 
@@ -77,11 +81,6 @@ const inserirPessoa = async () => {
 };
 
 //Read
-const popularCampos = data => {
-	const array = Object.keys(data);
-	array.forEach(el => view.setValue(el, data[el]));
-};
-
 const getPessoa = async () => {
 	const data = {
 		id: parseInt(view.getValue(view.DOM.pk))
@@ -106,9 +105,13 @@ const getPessoa = async () => {
 		view.popularCampos(conjuge.data, view.DOM.camposConjuge);
 		$('#conjuge').collapse('show');
 	}
+	getBanco(0, data.id);
 };
 
 //Update
+const alterarBanco = () => {
+	updateBank(0, parseInt(view.getValue(view.DOM.pk)));
+};
 const alterarPessoa = async () => {
 	//Resolver problema da data
 	let data;
@@ -147,7 +150,6 @@ const alterarPessoa = async () => {
 				acao: 'update',
 				data: dataConjuge
 			};
-			console.log(prop.data);
 			const conjugeResponse = await model.db(prop);
 			view.resultMessage(conjugeResponse.data);
 		} else if (
@@ -207,15 +209,7 @@ const excluirPessoa = async () => {
 	}
 
 	//2. Excluir dados bancários
-	const propBanco = {
-		tabela: 'dados_bancarios',
-		acao: 'delete',
-		data: {
-			cliente: id
-		}
-	};
-
-	const excluirBanco = await model.db(propBanco);
+	deleteBank(0, id);
 
 	//2. Excluir pessoa
 	if (excluirBanco.data.status) {
@@ -249,4 +243,4 @@ const excluirPessoa = async () => {
 	}
 };
 
-export { inserirPessoa, getPessoa, excluirPessoa, alterarPessoa };
+export { inserirPessoa, getPessoa, excluirPessoa, alterarPessoa, alterarBanco };

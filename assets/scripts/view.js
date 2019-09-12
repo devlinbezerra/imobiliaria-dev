@@ -21,12 +21,18 @@ export default (() => {
 		modalBanco: 'modal_dados_bancarios'
 	};
 
+	const bankButton =
+		"<button id='cadastrar_banco' data-toggle='modal' data-target='#modal_dados_bancarios'class='btn btn-info'>Dados Bancários</button>";
 	const Cbuttons =
-		"<button class='btn btn-default'><a href='form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button>    <button id='cadastrar_banco' data-toggle='modal' data-target='#modal_dados_bancarios'class='btn btn-info' disabled>Dados Bancários</button><button id='form_clientes_salvar' class='btn btn-primary'>Salvar</button>";
+		"<button class='btn btn-default'><a href='form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button><button id='form_clientes_salvar' class='btn btn-primary'>Salvar</button>";
 	const RUDbuttons =
-		"<button class='btn btn-default'><a href='form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button><button id='cadastrar_banco' data-toggle='modal' data-target='#modal_dados_bancarios'class='btn btn-info' disabled>Dados Bancários</button><button id='botao_alterar_clientes' class='btn btn-warning'>Alterar</button><button id='botao_clientes_excluir' class='btn btn-danger'>Excluir</button>";
+		"<button class='btn btn-default'><a href='form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button><button id='botao_alterar_clientes' class='btn btn-warning'>Alterar</button><button id='botao_clientes_excluir' class='btn btn-danger'>Excluir</button>";
 
 	let updatedData = {};
+
+	const enableButton = (button, status) => {
+		document.getElementById(button).disabled = status;
+	};
 
 	const setUpdatedFields = fieldsClass => {
 		updatedData[fieldsClass] = [];
@@ -35,7 +41,7 @@ export default (() => {
 			el.addEventListener('change', e => {
 				const key = e.target.id;
 				const value = e.target.value;
-				updatedData[fieldsClass].push(`{"${key}": "${value}"}`);
+				updatedData[fieldsClass].unshift(`{"${key}": "${value}"}`);
 			});
 		});
 	};
@@ -45,12 +51,13 @@ export default (() => {
 		nodes.forEach(nd => (nd.value = data[nd.id]));
 	};
 
-	const callSaveButtons = () => {
-		document.querySelector(DOM.buttonArea).innerHTML = Cbuttons;
+	const callClientesSaveButton = () => {
+		document.querySelector(DOM.buttonArea).innerHTML = Cbuttons + bankButton;
+		enableButton(DOM.cadastrarButtonBanco, true);
 	};
 
-	const callUpdateDeleteButtons = () => {
-		document.querySelector(DOM.buttonArea).innerHTML = RUDbuttons;
+	const callClientesUpdateButton = () => {
+		document.querySelector(DOM.buttonArea).innerHTML = RUDbuttons + bankButton;
 	};
 
 	const callModal = modal => {
@@ -66,19 +73,14 @@ export default (() => {
 		updatedData,
 		callModal,
 		exitModal,
-		callSaveButtons,
-		callUpdateDeleteButtons,
+		callClientesSaveButton,
+		callClientesUpdateButton,
 		popularCampos,
 		setUpdatedFields,
-		enableButton: (button, status) => {
-			document.getElementById(button).disabled = status;
-		},
+		enableButton,
 		setEvent: (el, ev, fn) => {
 			if (document.getElementById(el)) {
 				document.getElementById(el).addEventListener(ev, fn);
-				console.log(`Existe o elemento ${el}.`);
-			} else {
-				console.log(`Não existe o elemento ${el}.`);
 			}
 		},
 		getValue: el => {

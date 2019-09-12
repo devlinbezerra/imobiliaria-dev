@@ -56,27 +56,27 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Rua</label>
-                            <input type='text' id='rua' class='form-control campo campo_conjuge' placeholder="Rua, Av., Etc." />
+                            <input type='text' id='rua' class='form-control campo' placeholder="Rua, Av., Etc." />
                         </div>
                         <div class="col-sm-4">
                             <label>Complemento</label>
-                            <input type='text' id='complemento' class='form-control campo campo_conjuge' placeholder="Quadra, Lote, Apto, etc" />
+                            <input type='text' id='complemento' class='form-control campo' placeholder="Quadra, Lote, Apto, etc" />
                         </div>
                         <div class="col-sm-4">
                             <label>Bairro</label>
-                            <input type='text' id='bairro' class='form-control campo campo_conjuge' placeholder="Informe o nome do bairro" />
+                            <input type='text' id='bairro' class='form-control campo' placeholder="Informe o nome do bairro" />
                         </div>
                         <div class="col-sm-4">
                             <label>Cidade</label>
-                            <input type='text' id='cidade' class='form-control campo campo_conjuge' placeholder="Cuiabá, Rondonópolis, etc" />
+                            <input type='text' id='cidade' class='form-control campo' placeholder="Cuiabá, Rondonópolis, etc" />
                         </div>
                         <div class="col-sm-4">
                             <label>Estado</label>
-                            <input type='text' id='estado' class='form-control campo campo_conjuge' placeholder="Ex.: MT, Mato Grosso" />
+                            <input type='text' id='estado' class='form-control campo' placeholder="Ex.: MT, Mato Grosso" />
                         </div>
                         <div class="col-sm-4">
                             <label>CEP</label>
-                            <input type='text' id='cep' class='form-control campo campo_conjuge' placeholder="78000-000" />
+                            <input type='text' id='cep' class='form-control campo' placeholder="78000-000" />
                         </div>
                         <div class="col-sm-4">
                             <label>Telefone Comercial</label>
@@ -137,7 +137,7 @@
                         </div><!-- dados Conjuge-->
                         <div class="col-sm-12">
                             <label>Anotações</label>
-                            <input type='textarea' id='anotacao' class='form-control  campo campo_conjuge' placeholder="Coloque suas anotações aqui." />
+                            <input type='textarea' id='anotacao' class='form-control  campo' placeholder="Coloque suas anotações aqui." />
                         </div>
                         <input type='hidden' id='tipo' class='campo' value='cliente'/>
                         <input type='hidden' id='tipo' class='campo_conjuge' value='conjuge'/>

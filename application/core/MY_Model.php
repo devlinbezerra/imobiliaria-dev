@@ -3,7 +3,7 @@
 class MY_Model extends CI_Model {
 
     //Não permitir inserir sem os dados obrigatórios
-    private function required_fields($data){
+    protected function required_fields($data){
         $status = true;
         foreach($this->required_fields as $resp){
             if(!array_key_exists($resp, $data)){
@@ -18,7 +18,7 @@ class MY_Model extends CI_Model {
     }
 
     //Não permitir duplicidade de acordo com os campos exclusivos
-    private function check_exclusive_fields($data){
+    protected function check_exclusive_fields($data){
         $status = true;
         $keys = array_keys($data);
         
