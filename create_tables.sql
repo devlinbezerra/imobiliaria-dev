@@ -1,4 +1,4 @@
-use facil;
+create database facil;
 create table usuario (
 id int unsigned not null auto_increment,
 user_name varchar(255) not null,
@@ -23,7 +23,7 @@ telefone_residencial varchar(65),
 tipo varchar(65) not null,
 estado_civil varchar(65) not null,
 conjuge int unsigned,
-renda float unsigned,
+renda varchar(65),
 anotacao varchar(500),
 primary key(id),
 constraint fk_pessoa_conjuge foreign key (conjuge) references pessoa(id));

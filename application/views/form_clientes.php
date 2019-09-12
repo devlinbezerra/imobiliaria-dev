@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Data de Nascimento</label>
-                            <input type='date' id='data_nascimento campo' class='form-control' />
+                            <input type='date' id='data_nascimento' class='form-control campo' />
                         </div>
                         <div class="col-sm-4">
                             <label>Rua</label>
@@ -80,15 +80,15 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Telefone Comercial</label>
-                            <input type='text' id='telefone_comercial campo' class='form-control' placeholder="(00) 00000-0000" />
+                            <input type='text' id='telefone_comercial' class='form-control campo' placeholder="(00) 00000-0000" />
                         </div>
                         <div class="col-sm-4">
                             <label>Telefone Residencial</label>
-                            <input type='text' id='telefone_residencial campo' class='form-control' placeholder="(00) 00000-0000" />
+                            <input type='text' id='telefone_residencial' class='form-control campo' placeholder="(00) 00000-0000" />
                         </div>
                         <div class="col-sm-4">
                                 <label>Profissão</label>
-                                <input type='text' id='profissao campo' class='form-control' placeholder="Infomar a profissão" />
+                                <input type='text' id='profissao' class='form-control campo' placeholder="Infomar a profissão" />
                         </div>
                         <div class="col-sm-4">
                                 <label>Renda</label>
@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <label>Data de Nascimento</label>
-                                        <input type='date' id='data_nascimento campo_conjuge' class='form-control' />
+                                        <input type='date' id='data_nascimento' class='form-control campo_conjuge' />
                                     </div>
                                     <div class="col-sm-4">
                                         <label>Telefone </label>
@@ -128,11 +128,11 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <label>Profissão</label>
-                                        <input type='text' id='profissao' class='form-control' placeholder="Infomar a profissão" />
+                                        <input type='text' id='profissao' class='form-control campo_conjuge' placeholder="Infomar a profissão" />
                                     </div>
                                     <div class="col-sm-4">
                                         <label>Renda</label>
-                                        <input type='text' id='renda' class='form-control' placeholder="Infomar a renda" />
+                                        <input type='text' id='renda' class='form-control campo_conjuge' placeholder="Infomar a renda" />
                                     </div>
                         </div><!-- dados Conjuge-->
                         <div class="col-sm-12">
@@ -141,15 +141,16 @@
                         </div>
                         <input type='hidden' id='tipo' class='campo' value='cliente'/>
                         <input type='hidden' id='tipo' class='campo_conjuge' value='conjuge'/>
+                        <input type='hidden' id='pk' value='<?php echo $id;?>'/>
                         
 
                     </form>
                 </div><!-- panel body -->
                 <div class='panel-footer'>
-                    <div class='btn-group'>
-                        <button class='btn btn-default'><a href='<?php echo base_url();?>producao/form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button>
+                    <div class='btn-group botoes'>
+                        <!--<button class='btn btn-default'><a href='<?php //echo base_url();?>producao/form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button>
                         <button id='cadastrar_banco' data-toggle='modal' data-target='#modal_dados_bancarios'class='btn btn-info' disabled>Dados Bancários</button>
-                        <button id='form_clientes_salvar' class='btn btn-primary'>Salvar</button>
+                        <button id='form_clientes_salvar' class='btn btn-primary'>Salvar</button>-->
                     </div>
                 </div>
             </div><!-- hpanel-->

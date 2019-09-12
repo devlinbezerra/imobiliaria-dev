@@ -16,14 +16,18 @@ class Api extends MY_Controller {
                 echo $e->getMessage();
             }
         }else{
-            echo 'no session';
+            $status = array(
+                'status' => false,
+                'message' => 'Sessão expirou, por favor faça login novamente'
+            );
+            echo json_encode($status);
         }
         
     }
 
     //2. Read
     public function get($tabela){
-        $vs = true; //parent::validate_session();
+        $vs = parent::validate_session();
         parent::json_post();
         if($vs){
             $model = 'Model_'.$tabela;
@@ -33,12 +37,19 @@ class Api extends MY_Controller {
             }catch(Exception $e){
                 echo $e->getMessage();
             }
+        }else{
+            $status = array(
+                'status' => false,
+                'message' => 'Sessão expirou, por favor faça login novamente'
+            );
+            echo json_encode($status);
         }
     }
 
     //3. Update
     public function update($tabela){
         $vs = parent::validate_session();
+        parent::json_post();
         if($vs){
             $model = 'Model_'.$tabela;
             $this->load->model($model);
@@ -47,12 +58,19 @@ class Api extends MY_Controller {
             }catch(Exception $e){
                 echo $e->getMessage();
             }
+        }else{
+            $status = array(
+                'status' => false,
+                'message' => 'Sessão expirou, por favor faça login novamente'
+            );
+            echo json_encode($status);
         }
     }
 
     //4. Delete
     public function delete($tabela){
         $vs = parent::validate_session();
+        parent::json_post();
         if($vs){
             $model = 'Model_'.$tabela;
             $this->load->model($model);
@@ -61,6 +79,12 @@ class Api extends MY_Controller {
             }catch(Exception $e){
                 echo $e->getMessage();
             }
+        }else{
+            $status = array(
+                'status' => false,
+                'message' => 'Sessão expirou, por favor faça login novamente'
+            );
+            echo json_encode($status);
         }
     }
 

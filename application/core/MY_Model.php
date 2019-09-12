@@ -101,7 +101,7 @@ class MY_Model extends CI_Model {
             );
         }else{
             $status = array(
-                'status' => true,
+                'status' => false,
                 'message' => 'Erro: Existem dados já registrados em banco.'
             );
         }
@@ -115,12 +115,12 @@ class MY_Model extends CI_Model {
             $this->db->delete($this->table);
             $status = array(
                 'status' => true,
-                'message' => 'Erro: Existem dados já registrados em banco.'
+                'message' => 'Registro excluído!'
             );
             echo json_encode($status);
         }catch(Exception $e){
             $status = array(
-                'status' => true,
+                'status' => false,
                 'message' => $e->getMessage()
             );
             echo $status;
