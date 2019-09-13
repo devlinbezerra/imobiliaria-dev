@@ -38,6 +38,7 @@
                             
                         </form>
                         <button id='enviar' class="btn btn-success btn-block">Entrar</button>
+                        <input type='hidden' id='modulo' value='login' />
                         <small><i class='message'></i></small>
                 </div>
             </div>

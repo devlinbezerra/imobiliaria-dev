@@ -1,4 +1,11 @@
-import view from './../view';
+import {
+	DOM,
+	exitModal,
+	resultMessage,
+	enableButton,
+	getFields,
+	popularCampos
+} from './../view';
 import model from './../model';
 
 //CRUD
@@ -8,15 +15,12 @@ export const inserirBanco = async pessoa => {
 	const data = {
 		tabela: 'dados_bancarios',
 		acao: 'inserir',
-		data: Object.assign(
-			{ cliente: pessoa },
-			view.getFields(view.DOM.camposBanco)
-		)
+		data: Object.assign({ cliente: pessoa }, getFields(DOM.camposBanco))
 	};
 	const banco = await model.db(data);
-	view.exitModal(view.DOM.modalBanco);
-	view.resultMessage(banco.data);
-	view.enableButton(view.DOM.saveButtonBanco, true);
+	exitModal(DOM.modalBanco);
+	resultMessage(banco.data);
+	enableButton(DOM.saveButtonBanco, true);
 };
 
 //Read
@@ -51,14 +55,14 @@ export const getBanco = async (id = 0, cliente = 0) => {
 
 		const banco = await model.db(Object.assign(obj, propBanco));
 		if (banco.data.status) {
-			view.popularCampos(banco.data.result, view.DOM.camposBanco);
+			popularCampos(banco.data.result, DOM.camposBanco);
 		}
 	}
 };
 
 //Update
 export const updateBank = async (id = 0, cliente = 0) => {
-	const dataForm = view.getFields(view.DOM.camposBanco);
+	const dataForm = getFields(DOM.camposBanco);
 	let status;
 	let data;
 	if (id) {
@@ -79,10 +83,10 @@ export const updateBank = async (id = 0, cliente = 0) => {
 		const updates = await model.db(prop);
 		console.log(updates);
 		if (updates.data.status) {
-			view.exitModal(view.DOM.modalBanco);
-			view.resultMessage(updates.data);
+			exitModal(DOM.modalBanco);
+			resultMessage(updates.data);
 		} else {
-			view.resultMessage(updates.data);
+			resultMessage(updates.data);
 		}
 	}
 };

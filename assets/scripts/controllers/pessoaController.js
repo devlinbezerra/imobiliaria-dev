@@ -1,4 +1,14 @@
-import view from './../view';
+import {
+	setEvent,
+	getValue,
+	getFields,
+	resultMessage,
+	enableButton,
+	textHtml,
+	popularCampos,
+	DOM,
+	updatedData
+} from './../view';
 import model from './../model';
 import {
 	inserirBanco,
@@ -17,15 +27,14 @@ let tmp = {};
 
 //VIEW
 const mostrarConjugeForm = () => {
-	const res = view.getValue('estado_civil');
+	const res = getValue('estado_civil');
 	if (res === 'Casado(a)') {
 		$('#conjuge').collapse('show');
 	} else {
 		$('#conjuge').collapse('hide');
 	}
 };
-
-view.setEvent(view.DOM.estadoCivil, 'change', mostrarConjugeForm);
+setEvent(DOM.estadoCivil, 'change', mostrarConjugeForm);
 
 //CRUD
 
@@ -36,14 +45,14 @@ const registrarBanco = () => {
 
 const inserirPessoa = async () => {
 	//Inserir conjuge
-	const conjugeStatus = view.getValue(view.DOM.estadoCivil) === 'Casado(a)';
+	const conjugeStatus = getValue(DOM.estadoCivil) === 'Casado(a)';
 	let conjuge;
 	let pessoa;
 	if (conjugeStatus) {
 		const conjugeDados = {
 			tabela: 'pessoa',
 			acao: 'inserir',
-			data: view.getFields(view.DOM.camposConjuge)
+			data: getFields(DOM.camposConjuge)
 		};
 		conjuge = await model.db(conjugeDados);
 	}
@@ -55,36 +64,36 @@ const inserirPessoa = async () => {
 			acao: 'inserir',
 			data: Object.assign(
 				{ conjuge: conjuge.data.id },
-				view.getFields(view.DOM.camposPessoa)
+				getFields(DOM.camposPessoa)
 			)
 		};
 		pessoa = await model.db(prop);
-		view.resultMessage(pessoa.data);
+		resultMessage(pessoa.data);
 	} else if (conjugeStatus) {
-		view.resultMessage(conjuge.data);
+		resultMessage(conjuge.data);
 	} else {
 		const prop = {
 			tabela: 'pessoa',
 			acao: 'inserir',
-			data: view.getFields(view.DOM.camposPessoa)
+			data: getFields(DOM.camposPessoa)
 		};
 		pessoa = await model.db(prop);
-		view.resultMessage(pessoa.data);
+		resultMessage(pessoa.data);
 	}
 
 	tmp.pessoaId = pessoa.data.id;
 	if (pessoa.data.status) {
-		view.enableButton(view.DOM.cadastrarButtonBanco, false);
-		view.enableButton(view.DOM.saveButtonClientes, true);
-		view.textHtml(view.DOM.cancelButtonClientes, 'Novo Registro');
-		view.setEvent(view.DOM.saveButtonBanco, 'click', registrarBanco);
+		enableButton(DOM.cadastrarButtonBanco, false);
+		enableButton(DOM.saveButtonClientes, true);
+		textHtml(DOM.cancelButtonClientes, 'Novo Registro');
+		setEvent(DOM.saveButtonBanco, 'click', registrarBanco);
 	}
 };
 
 //Read
 const getPessoa = async () => {
 	const data = {
-		id: parseInt(view.getValue(view.DOM.pk))
+		id: parseInt(getValue(DOM.pk))
 	};
 	const prop = {
 		tabela: 'pessoa',
@@ -93,7 +102,7 @@ const getPessoa = async () => {
 	};
 
 	const pessoa = await model.db(prop);
-	view.popularCampos(pessoa.data.result, view.DOM.camposPessoa);
+	popularCampos(pessoa.data.result, DOM.camposPessoa);
 	if (pessoa.data.result.estado_civil === 'Casado(a)') {
 		const prop = {
 			tabela: 'pessoa',
@@ -103,7 +112,7 @@ const getPessoa = async () => {
 			}
 		};
 		const conjuge = await model.db(prop);
-		view.popularCampos(conjuge.data.result, view.DOM.camposConjuge);
+		popularCampos(conjuge.data.result, DOM.camposConjuge);
 		$('#conjuge').collapse('show');
 	}
 	getBanco(0, data.id);
@@ -111,7 +120,7 @@ const getPessoa = async () => {
 
 //Update
 const alterarBanco = () => {
-	const cliente = parseInt(view.getValue(view.DOM.pk));
+	const cliente = parseInt(getValue(DOM.pk));
 	checkExistBank(cliente).then(res => {
 		if (res.data.status) {
 			updateBank(0, cliente);
@@ -123,9 +132,9 @@ const alterarBanco = () => {
 const alterarPessoa = async () => {
 	//Resolver problema da data
 	let data;
-	const id = parseInt(view.getValue(view.DOM.pk));
+	const id = parseInt(getValue(DOM.pk));
 	// Alterar a pessoa
-	view.updatedData[view.DOM.camposPessoa].forEach(el => {
+	updatedData[DOM.camposPessoa].forEach(el => {
 		data = Object.assign(JSON.parse(el), data);
 	});
 	data = Object.assign({ id }, data);
@@ -152,7 +161,7 @@ const alterarPessoa = async () => {
 			pessoa.data.result.conjuge
 		) {
 			let dataConjuge;
-			view.updatedData[view.DOM.camposConjuge].forEach(el => {
+			updatedData[DOM.camposConjuge].forEach(el => {
 				dataConjuge = Object.assign(JSON.parse(el), dataConjuge);
 			});
 			dataConjuge = Object.assign(
@@ -165,13 +174,13 @@ const alterarPessoa = async () => {
 				data: dataConjuge
 			};
 			const conjugeResponse = await model.db(prop);
-			view.resultMessage(conjugeResponse.data);
+			resultMessage(conjugeResponse.data);
 		} else if (
 			pessoa.data.result.estado_civil === 'Casado(a)' &&
 			!pessoa.data.result.conjuge
 		) {
 			let insertDataConjuge;
-			view.updatedData[view.DOM.camposConjuge].forEach(el => {
+			updatedData[DOM.camposConjuge].forEach(el => {
 				insertDataConjuge = Object.assign(JSON.parse(el), insertDataConjuge);
 			});
 			insertDataConjuge = Object.assign({ tipo: 'conjuge' }, insertDataConjuge);
@@ -193,12 +202,12 @@ const alterarPessoa = async () => {
 			};
 			await model.db(propUpdatePessoa);
 
-			view.resultMessage(conjugeInsert.data);
+			resultMessage(conjugeInsert.data);
 		} else {
-			view.resultMessage(pessoaResponse.data);
+			resultMessage(pessoaResponse.data);
 		}
 	} else {
-		view.resultMessage(pessoaResponse.data);
+		resultMessage(pessoaResponse.data);
 	}
 
 	//Se alterar o estado civil para casado e ainda não tem conjuge, tem que cadastrar o conjuge
@@ -207,7 +216,7 @@ const alterarPessoa = async () => {
 //Delete
 const excluirPessoa = async () => {
 	//1. Pegar o código
-	const id = parseInt(view.getValue(view.DOM.pk));
+	const id = parseInt(getValue(DOM.pk));
 	const propPessoa = {
 		tabela: 'pessoa',
 		acao: 'get',
@@ -246,13 +255,13 @@ const excluirPessoa = async () => {
 			};
 
 			const excluirConjuge = await model.db(prop);
-			view.resultMessage(excluirConjuge.data);
+			resultMessage(excluirConjuge.data);
 			window.location.replace('0');
 		} else {
-			view.resultMessage(excluir.data);
+			resultMessage(excluir.data);
 		}
 	} else {
-		view.resultMessage(excluirBanco.data);
+		resultMessage(excluirBanco.data);
 	}
 };
 

@@ -22,9 +22,9 @@
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
-                    Cadastro de Clientes
+                    Cadastro de Inquelinos
                 </h2>
-                <small>Formulário para Cadastro de Clientes</small>
+                <small>Formulário para Cadastro de Inquelinos</small>
             </div>
         </div>
     </div>
@@ -139,8 +139,8 @@
                             <label>Anotações</label>
                             <input type='textarea' id='anotacao' class='form-control  campo' placeholder="Coloque suas anotações aqui." />
                         </div>
-                        <input type='hidden' id='modulo' value='clientes' />
-                        <input type='hidden' id='tipo' class='campo' value='cliente'/>
+                        <input type='hidden' id='modulo' value='inquelinos' />
+                        <input type='hidden' id='tipo' class='campo' value='inquelino'/>
                         <input type='hidden' id='tipo' class='campo_conjuge' value='conjuge'/>
                         <input type='hidden' id='pk' value='<?php echo $id;?>'/>
                         
@@ -149,9 +149,7 @@
                 </div><!-- panel body -->
                 <div class='panel-footer'>
                     <div class='btn-group botoes'>
-                        <!--<button class='btn btn-default'><a href='<?php //echo base_url();?>producao/form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button>
-                        <button id='cadastrar_banco' data-toggle='modal' data-target='#modal_dados_bancarios'class='btn btn-info' disabled>Dados Bancários</button>
-                        <button id='form_clientes_salvar' class='btn btn-primary'>Salvar</button>-->
+
                     </div>
                 </div>
             </div><!-- hpanel-->

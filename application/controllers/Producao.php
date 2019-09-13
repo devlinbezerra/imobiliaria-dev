@@ -28,6 +28,19 @@ class Producao extends MY_Controller {
         $this->load->view('modal_confirm_delete');
         $this->load->view('scripts');
     }
+    
+    public function form_inquelinos($id = 0){
+        $data = array('id'=> $id);
+        $this->load->helper('url');
+        $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
+        $this->load->view('form_inquelinos', $data);
+        $this->load->view('footer');
+        $this->load->view('modal_resultado');
+        $this->load->view('modal_confirm_delete');
+        $this->load->view('scripts');
+    }
 
     public function praticando() {
         $this->load->helper('url');

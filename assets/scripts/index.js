@@ -1,41 +1,52 @@
-import model from './model';
-import view from './view';
 import {
-	inserirPessoa,
 	getPessoa,
-	excluirPessoa,
+	inserirPessoa,
+	alterarBanco,
 	alterarPessoa,
-	alterarBanco
+	excluirPessoa
 } from './controllers/pessoaController';
+import {
+	DOM,
+	callClientesSaveButton,
+	callClientesUpdateButton,
+	setEvent,
+	setUpdatedFields,
+	getValue
+} from './view';
 import { autenticarUsuario } from './controllers/usuarioController';
 
-const controller = (() => {
-	const setEventListener = () => {
-		//Login
-		view.setEvent(view.DOM.loginButton, 'click', autenticarUsuario);
-
-		//Clientes
-		if (parseInt(view.getValue(view.DOM.pk))) {
+const load = modulo => {
+	if (modulo === 'login') {
+		setEvent(DOM.loginButton, 'click', autenticarUsuario);
+	} else if (modulo === 'clientes') {
+		if (parseInt(getValue(DOM.pk))) {
 			getPessoa();
-			view.callClientesUpdateButton();
-			view.setEvent(view.DOM.buttonConfirmDelete, 'click', excluirPessoa);
-			view.setEvent(view.DOM.buttonUpdate, 'click', alterarPessoa);
-			view.setEvent(view.DOM.saveButtonBanco, 'click', alterarBanco);
-			view.setUpdatedFields(view.DOM.camposPessoa);
-			view.setUpdatedFields(view.DOM.camposConjuge);
-			view.setUpdatedFields(view.DOM.camposBanco);
+			callClientesUpdateButton();
+			setEvent(DOM.buttonConfirmDelete, 'click', excluirPessoa);
+			setEvent(DOM.buttonUpdate, 'click', alterarPessoa);
+			setEvent(DOM.saveButtonBanco, 'click', alterarBanco);
+			setUpdatedFields(DOM.camposPessoa);
+			setUpdatedFields(DOM.camposConjuge);
+			setUpdatedFields(DOM.camposBanco);
 		} else {
-			view.callClientesSaveButton();
-			view.setEvent(view.DOM.saveButtonClientes, 'click', inserirPessoa);
+			callClientesSaveButton();
+			setEvent(DOM.saveButtonClientes, 'click', inserirPessoa);
 		}
-	};
-
-	//Public functions
-	return {
-		init: () => {
-			setEventListener();
+	} else if (modulo === 'inquelinos') {
+		if (parseInt(getValue(DOM.pk))) {
+			getPessoa();
+			callClientesUpdateButton();
+			setEvent(DOM.buttonConfirmDelete, 'click', excluirPessoa);
+			setEvent(DOM.buttonUpdate, 'click', alterarPessoa);
+			setEvent(DOM.saveButtonBanco, 'click', alterarBanco);
+			setUpdatedFields(DOM.camposPessoa);
+			setUpdatedFields(DOM.camposConjuge);
+			setUpdatedFields(DOM.camposBanco);
+		} else {
+			callClientesSaveButton();
+			setEvent(DOM.saveButtonClientes, 'click', inserirPessoa);
 		}
-	};
-})(model, view);
+	}
+};
 
-controller.init();
+load(getValue(DOM.modulo));
