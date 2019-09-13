@@ -4,7 +4,8 @@ import {
 	inserirBanco,
 	getBanco,
 	deleteBank,
-	updateBank
+	updateBank,
+	checkExistBank
 } from './bancoController';
 
 /*
@@ -92,17 +93,17 @@ const getPessoa = async () => {
 	};
 
 	const pessoa = await model.db(prop);
-	view.popularCampos(pessoa.data, view.DOM.camposPessoa);
-	if (pessoa.data.estado_civil === 'Casado(a)') {
+	view.popularCampos(pessoa.data.result, view.DOM.camposPessoa);
+	if (pessoa.data.result.estado_civil === 'Casado(a)') {
 		const prop = {
 			tabela: 'pessoa',
 			acao: 'get',
 			data: {
-				id: parseInt(pessoa.data.conjuge)
+				id: parseInt(pessoa.data.result.conjuge)
 			}
 		};
 		const conjuge = await model.db(prop);
-		view.popularCampos(conjuge.data, view.DOM.camposConjuge);
+		view.popularCampos(conjuge.data.result, view.DOM.camposConjuge);
 		$('#conjuge').collapse('show');
 	}
 	getBanco(0, data.id);
@@ -110,7 +111,14 @@ const getPessoa = async () => {
 
 //Update
 const alterarBanco = () => {
-	updateBank(0, parseInt(view.getValue(view.DOM.pk)));
+	const cliente = parseInt(view.getValue(view.DOM.pk));
+	checkExistBank(cliente).then(res => {
+		if (res.data.status) {
+			updateBank(0, cliente);
+		} else {
+			inserirBanco(cliente);
+		}
+	});
 };
 const alterarPessoa = async () => {
 	//Resolver problema da data
@@ -139,12 +147,18 @@ const alterarPessoa = async () => {
 		};
 
 		const pessoa = await model.db(propPessoa);
-		if (pessoa.data.estado_civil === 'Casado(a)' && pessoa.data.conjuge) {
+		if (
+			pessoa.data.result.estado_civil === 'Casado(a)' &&
+			pessoa.data.result.conjuge
+		) {
 			let dataConjuge;
 			view.updatedData[view.DOM.camposConjuge].forEach(el => {
 				dataConjuge = Object.assign(JSON.parse(el), dataConjuge);
 			});
-			dataConjuge = Object.assign({ id: pessoa.data.conjuge }, dataConjuge);
+			dataConjuge = Object.assign(
+				{ id: pessoa.data.result.conjuge },
+				dataConjuge
+			);
 			const prop = {
 				tabela: 'pessoa',
 				acao: 'update',
@@ -153,8 +167,8 @@ const alterarPessoa = async () => {
 			const conjugeResponse = await model.db(prop);
 			view.resultMessage(conjugeResponse.data);
 		} else if (
-			pessoa.data.estado_civil === 'Casado(a)' &&
-			!pessoa.data.conjuge
+			pessoa.data.result.estado_civil === 'Casado(a)' &&
+			!pessoa.data.result.conjuge
 		) {
 			let insertDataConjuge;
 			view.updatedData[view.DOM.camposConjuge].forEach(el => {
@@ -170,7 +184,7 @@ const alterarPessoa = async () => {
 			const conjugeInsert = await model.db(propInsertConjuge);
 			const dataPessoaConjuge = {
 				conjuge: conjugeInsert.data.id,
-				id: pessoa.data.id
+				id: pessoa.data.result.id
 			};
 			const propUpdatePessoa = {
 				tabela: 'pessoa',
@@ -180,7 +194,6 @@ const alterarPessoa = async () => {
 			await model.db(propUpdatePessoa);
 
 			view.resultMessage(conjugeInsert.data);
-			console.log('mudô denovo');
 		} else {
 			view.resultMessage(pessoaResponse.data);
 		}
@@ -204,15 +217,15 @@ const excluirPessoa = async () => {
 	};
 	const pessoa = await model.db(propPessoa);
 	let conjuge = 0;
-	if (pessoa.data.estado_civil === 'Casado(a)') {
-		conjuge = pessoa.data.conjuge;
+	if (pessoa.data.result.estado_civil === 'Casado(a)') {
+		conjuge = pessoa.data.result.conjuge;
 	}
 
 	//2. Excluir dados bancários
-	deleteBank(0, id);
+	const excluirBanco = await deleteBank(0, id);
 
 	//2. Excluir pessoa
-	if (excluirBanco.data.status) {
+	if (excluirBanco.status) {
 		const prop = {
 			tabela: 'pessoa',
 			acao: 'delete',

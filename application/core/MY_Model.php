@@ -1,5 +1,5 @@
 <?php 
-
+error_reporting(E_ALL ^ E_WARNING); 
 class MY_Model extends CI_Model {
 
     //Não permitir inserir sem os dados obrigatórios
@@ -82,12 +82,24 @@ class MY_Model extends CI_Model {
     }
 
     public function get($data){
-        try{
-            $res = $this->db->get_where($this->table,$data);
-            return $res->result();
-        }catch(Exception $e){
-            echo $e->getMessage();
+        $res = $this->db->get_where($this->table,$data);
+        $data = $res->result();
+        if(sizeof($data) > 0){
+            if(sizeof($data) === 1){
+                $data = $data[0];
+            };
+            $response = array (
+                'status' => true,
+                'message' => 'A busca resultou em '.sizeof($data).' ocorrêcia(s).',
+                'result' => $data
+            );
+        }else{
+            $response = array (
+                'status' => false,
+                'message' => 'Não há resultados para essa busca.'
+            );
         }
+        echo json_encode($response);
     }
 
     public function update($data){

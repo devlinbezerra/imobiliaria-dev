@@ -20,6 +20,17 @@ export const inserirBanco = async pessoa => {
 };
 
 //Read
+export const checkExistBank = cliente => {
+	const prop = {
+		tabela: 'dados_bancarios',
+		acao: 'get',
+		data: {
+			cliente
+		}
+	};
+	return model.db(prop);
+};
+
 export const getBanco = async (id = 0, cliente = 0) => {
 	let status;
 	let obj;
@@ -39,7 +50,9 @@ export const getBanco = async (id = 0, cliente = 0) => {
 		};
 
 		const banco = await model.db(Object.assign(obj, propBanco));
-		view.popularCampos(banco.data, view.DOM.camposBanco);
+		if (banco.data.status) {
+			view.popularCampos(banco.data.result, view.DOM.camposBanco);
+		}
 	}
 };
 
@@ -64,6 +77,7 @@ export const updateBank = async (id = 0, cliente = 0) => {
 			data
 		};
 		const updates = await model.db(prop);
+		console.log(updates);
 		if (updates.data.status) {
 			view.exitModal(view.DOM.modalBanco);
 			view.resultMessage(updates.data);
@@ -92,6 +106,7 @@ export const deleteBank = async (id = 0, cliente = 0) => {
 			acao: 'delete'
 		};
 
-		const banco = await model.db(Object.assign(obj, propBanco));
+		const response = await model.db(Object.assign(obj, propBanco));
+		return response;
 	}
 };

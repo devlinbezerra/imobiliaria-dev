@@ -23,7 +23,7 @@ class Model_usuario extends MY_Model {
         try{
             $pwd_post = $data[$this->password];
             unset($data[$this->password]);
-            $res = parent::get($data);
+            $res = $this->db->get_where($this->table, $data)->result();
             if(isset($res[0]->pwd) && password_verify($pwd_post, $res[0]->pwd)){
                 return true;
             }else{

@@ -25,6 +25,7 @@ class Producao extends MY_Controller {
         $this->load->view('footer');
         $this->load->view('modal_dados_bancarios');
         $this->load->view('modal_resultado');
+        $this->load->view('modal_confirm_delete');
         $this->load->view('scripts');
     }
 

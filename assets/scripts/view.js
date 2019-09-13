@@ -7,6 +7,7 @@ export default (() => {
 		estadoCivil: 'estado_civil',
 		buttonArea: '.botoes',
 		buttonDelete: 'botao_clientes_excluir',
+		buttonConfirmDelete: 'excluir_registro',
 		buttonUpdate: 'botao_alterar_clientes',
 		saveButtonClientes: 'form_clientes_salvar',
 		saveButtonBanco: 'salvar_banco',
@@ -18,7 +19,8 @@ export default (() => {
 		mensagemHead: 'message-head',
 		mensagemBody: 'message-body',
 		modalMensagem: 'modal_resultado',
-		modalBanco: 'modal_dados_bancarios'
+		modalBanco: 'modal_dados_bancarios',
+		modalConfirmDelete: 'modal_confirm_delete'
 	};
 
 	const bankButton =
@@ -26,7 +28,7 @@ export default (() => {
 	const Cbuttons =
 		"<button class='btn btn-default'><a href='form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button><button id='form_clientes_salvar' class='btn btn-primary'>Salvar</button>";
 	const RUDbuttons =
-		"<button class='btn btn-default'><a href='form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button><button id='botao_alterar_clientes' class='btn btn-warning'>Alterar</button><button id='botao_clientes_excluir' class='btn btn-danger'>Excluir</button>";
+		"<button class='btn btn-default'><a href='form_clientes' id='botao_cancelar_clientes'>Cancelar</a></button><button id='botao_alterar_clientes' class='btn btn-warning'>Alterar</button><button id='botao_clientes_excluir' data-toggle='modal' data-target='#modal_confirm_delete' class='btn btn-danger'>Excluir</button>";
 
 	let updatedData = {};
 

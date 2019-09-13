@@ -32,11 +32,7 @@ class Api extends MY_Controller {
         if($vs){
             $model = 'Model_'.$tabela;
             $this->load->model($model);
-            try{
-               echo json_encode($this->$model->get($_POST)[0]);
-            }catch(Exception $e){
-                echo $e->getMessage();
-            }
+            $dados = $this->$model->get($_POST);
         }else{
             $status = array(
                 'status' => false,

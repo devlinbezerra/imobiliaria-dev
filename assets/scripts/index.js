@@ -18,7 +18,7 @@ const controller = (() => {
 		if (parseInt(view.getValue(view.DOM.pk))) {
 			getPessoa();
 			view.callClientesUpdateButton();
-			view.setEvent(view.DOM.buttonDelete, 'click', excluirPessoa);
+			view.setEvent(view.DOM.buttonConfirmDelete, 'click', excluirPessoa);
 			view.setEvent(view.DOM.buttonUpdate, 'click', alterarPessoa);
 			view.setEvent(view.DOM.saveButtonBanco, 'click', alterarBanco);
 			view.setUpdatedFields(view.DOM.camposPessoa);
