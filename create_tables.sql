@@ -58,6 +58,7 @@ constraint fk_imovel_proprietario foreign key (proprietario) references pessoa (
 
 create table contratos (
 id int unsigned not null auto_increment,
+numero_contrato varchar(65),
 imovel int unsigned not null,
 contratante int unsigned not null,
 contratado int unsigned not null,

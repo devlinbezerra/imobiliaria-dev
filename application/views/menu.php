@@ -25,10 +25,10 @@
                 <a href="#"><span class="nav-label">Cadastro</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                         <li class='active'><a href="<?php echo base_url(); ?>producao/form_clientes">Proprietários</a></li>
-                        <li><a href="imoveis.html">Imóveis</a></li>
+                        <li><a href="<?php echo base_url(); ?>producao/form_imoveis">Imóveis</a></li>
                         <li><a href="<?php echo base_url(); ?>producao/form_inquelinos">Inquelinos</a></li>
-                        <li><a href="contratos.html">Contratos</a></li>
-                        <li><a href="form_debitos.html">Débitos</a></li>        
+                        <li><a href="<?php echo base_url(); ?>producao/form_contratos">Contratos</a></li>
+                        <li><a href="<?php echo base_url(); ?>producao/form_debitos">Débitos</a></li>        
                 </ul>
             </li>
             <li>

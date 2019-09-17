@@ -1,0 +1,74 @@
+import {
+	setEvent,
+	getValue,
+	getFields,
+	resultMessage,
+	enableButton,
+	textHtml,
+	popularCampos,
+	DOM,
+	updatedData
+} from './../view';
+import model from './../model';
+
+//CRUD
+
+//Create
+
+export const inserirDebito = () => {
+	const dados = {
+		tabela: 'debitos',
+		acao: 'inserir',
+		data: getFields(DOM.camposDebito)
+	};
+
+	const res = model.db(dados).then(res => resultMessage(res.data));
+};
+
+//Read
+export const getDebito = () => {
+	const data = {
+		id: parseInt(getValue(DOM.pk))
+	};
+	const prop = {
+		tabela: 'debitos',
+		acao: 'get',
+		data
+	};
+
+	model.db(prop).then(res => {
+		if (res.data.status) {
+			popularCampos(res.data.result, DOM.camposDebito);
+		} else {
+			resultMessage(res.data.message);
+		}
+	});
+};
+
+//Update
+export const updateDebito = () => {
+	const campos = getFields(DOM.camposDebito);
+	const data = Object.assign({ id: getValue(DOM.pk) }, campos);
+	const prop = {
+		tabela: 'debitos',
+		acao: 'update',
+		data
+	};
+
+	model.db(prop).then(res => resultMessage(res.data));
+};
+
+//Delete
+export const deleteDebito = () => {
+	const data = {
+		id: getValue(DOM.pk)
+	};
+
+	const prop = {
+		tabela: 'debitos',
+		acao: 'delete',
+		data
+	};
+
+	model.db(prop).then(res => resultMessage(res.data));
+};

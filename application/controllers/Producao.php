@@ -42,6 +42,45 @@ class Producao extends MY_Controller {
         $this->load->view('scripts');
     }
 
+    public function form_imoveis($id = 0){
+        $data = array('id'=> $id);
+        $this->load->helper('url');
+        $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
+        $this->load->view('form_imoveis', $data);
+        $this->load->view('footer');
+        $this->load->view('modal_resultado');
+        $this->load->view('modal_confirm_delete');
+        $this->load->view('scripts');
+    }
+
+    public function form_contratos($id = 0){
+        $data = array('id'=> $id);
+        $this->load->helper('url');
+        $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
+        $this->load->view('form_contratos', $data);
+        $this->load->view('footer');
+        $this->load->view('modal_resultado');
+        $this->load->view('modal_confirm_delete');
+        $this->load->view('scripts');
+    }
+
+    public function form_debitos($id = 0){
+        $data = array('id'=> $id);
+        $this->load->helper('url');
+        $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
+        $this->load->view('form_debitos', $data);
+        $this->load->view('footer');
+        $this->load->view('modal_resultado');
+        $this->load->view('modal_confirm_delete');
+        $this->load->view('scripts');
+    }
+
     public function praticando() {
         $this->load->helper('url');
         $this->load->view('praticando');

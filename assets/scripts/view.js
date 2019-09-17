@@ -16,6 +16,9 @@ export const DOM = {
 	camposPessoa: '.campo',
 	camposConjuge: '.campo_conjuge',
 	camposBanco: '.banco',
+	camposImovel: '.campo_imovel',
+	camposContrato: '.campo_contrato',
+	camposDebito: '.campo_debitos',
 	mensagemHead: 'message-head',
 	mensagemBody: 'message-body',
 	modalMensagem: 'modal_resultado',
@@ -60,6 +63,14 @@ export const callClientesSaveButton = () => {
 
 export const callClientesUpdateButton = () => {
 	document.querySelector(DOM.buttonArea).innerHTML = RUDbuttons + bankButton;
+};
+
+export const callInquelinosSaveButton = () => {
+	document.querySelector(DOM.buttonArea).innerHTML = Cbuttons;
+};
+
+export const callInquelinosUpdateButton = () => {
+	document.querySelector(DOM.buttonArea).innerHTML = RUDbuttons;
 };
 
 export const callModal = modal => {
