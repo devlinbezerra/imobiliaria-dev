@@ -44,6 +44,7 @@ const registrarBanco = () => {
 };
 
 const inserirPessoa = async () => {
+	enableButton(DOM.saveButtonClientes, true);
 	//Inserir conjuge
 	const conjugeStatus = getValue(DOM.estadoCivil) === 'Casado(a)';
 	let conjuge;
@@ -68,9 +69,15 @@ const inserirPessoa = async () => {
 			)
 		};
 		pessoa = await model.db(prop);
+		if (!pessoa.data.status) {
+			enableButton(DOM.saveButtonClientes, false);
+		}
 		resultMessage(pessoa.data);
 	} else if (conjugeStatus) {
 		resultMessage(conjuge.data);
+		if (!conjuge.data.status) {
+			enableButton(DOM.saveButtonClientes, false);
+		}
 	} else {
 		const prop = {
 			tabela: 'pessoa',
@@ -78,13 +85,15 @@ const inserirPessoa = async () => {
 			data: getFields(DOM.camposPessoa)
 		};
 		pessoa = await model.db(prop);
+		if (!pessoa.data.status) {
+			enableButton(DOM.saveButtonClientes, false);
+		}
 		resultMessage(pessoa.data);
 	}
 
 	tmp.pessoaId = pessoa.data.id;
 	if (pessoa.data.status) {
 		enableButton(DOM.cadastrarButtonBanco, false);
-		enableButton(DOM.saveButtonClientes, true);
 		textHtml(DOM.cancelButtonClientes, 'Novo Registro');
 		setEvent(DOM.saveButtonBanco, 'click', registrarBanco);
 	}
@@ -157,6 +166,7 @@ const alterarBanco = () => {
 		}
 	});
 };
+
 const alterarPessoa = async () => {
 	//Resolver problema da data
 	let data;

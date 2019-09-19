@@ -1,7 +1,6 @@
 /**
  * Pendências:
- * Ativar a o menu no caminho que fica no canto superior direito de cada módulo
- * Impedir que ocorra mais que um registro por clicar várias vezes no botão
+ * ok Bloqueio de multi inserção, função campo select e join para evitar código de foreigh key nas listas
  * Corrigir faixa de rodapé que se movimenta quando abre parte do desenvolvedor
  * Programar o que será feito quando sistem retorna um erro de SQL. Por exemplo: Quando uma exclusão não dá certo devido a um foreign key
  *
@@ -44,7 +43,7 @@ export const loadList = (data, modulo) => {
 				<td>${el.bairro}</td>
 				<td>${el.cidade}</td>
 				<td>${el.matricula}</td>
-				<td>${el.proprietario}</td>
+				<td>${el.proprietario_nome}</td>
 				<td>${el.anotacao}</td>
 				<td><a href='form_${modulo}/${el.id}'>Clique aqui para visualizar ou Alterar</a></td>
 			</tr>`;
@@ -55,9 +54,9 @@ export const loadList = (data, modulo) => {
 			let html = `
 			<tr>
 				<td>${el.numero_contrato}</td>
-				<td>${el.imovel}</td>
-				<td>${el.contratante}</td>
-				<td>${el.contratado}</td>
+				<td>${el.imovel_descricao}</td>
+				<td>${el.contratante_nome}</td>
+				<td>${el.contratado_nome}</td>
 				<td>${el.inicio}</td>
 				<td>${el.termino}</td>
 				<td><a target='_blank' href='${el.link}'><img width='20' height='20' src='./../assets/images/general/drive.png' /></a></td>
@@ -70,9 +69,10 @@ export const loadList = (data, modulo) => {
 			let html = `
 			<tr>
 				<td>${el.vencimento}</td>
-				<td>${el.contrato}</td>
-				<td>${el.tipo}</td>
+				<td>${el.imovel}</td>
+				<td>${el.contratante}</td>
 				<td>${el.valor}</td>
+				<td>${el.numero_contrato}</td>
 				<td>${el.status}</td>
 				<td><a href='form_${modulo}/${el.id}'>Clique aqui para visualizar ou Alterar</a></td>
 			</tr>`;
@@ -80,6 +80,26 @@ export const loadList = (data, modulo) => {
 		});
 	}
 	$('#lista').footable();
+};
+
+export const loadSelectField = (field, data) => {
+	let key;
+	if (
+		field === 'proprietario' ||
+		field === 'contratante' ||
+		field === 'contratado'
+	) {
+		key = 'nome';
+	} else if (field === 'imovel') {
+		key = 'descricao';
+	} else if (field === 'contrato') {
+		key = 'numero_contrato';
+	}
+
+	data.forEach(el => {
+		let html = `<option value='${el.id}'>${el[key]}</option>`;
+		document.getElementById(field).insertAdjacentHTML('beforeend', html);
+	});
 };
 
 export const DOM = {

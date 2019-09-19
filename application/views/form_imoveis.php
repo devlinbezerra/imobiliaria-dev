@@ -107,12 +107,7 @@
 							</div>
 							<div class="col-sm-4">
 								<label>Proprietário</label>
-								<select id='proprietario' class="form-control campo_imovel">
-									<option value='143'>Rafael</option>
-									<option>Antônio</option>
-									<option>Carlinhos</option>
-									<option>Vanderlei</option>
-								</select>
+								<select id='proprietario' class="form-control campo_imovel"></select>
 							</div>
 							<div class="col-sm-8">
 								<label>Anotações</label>

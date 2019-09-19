@@ -12,6 +12,7 @@ import model from './../model';
 
 //Create
 export const inserirBanco = async pessoa => {
+	enableButton(DOM.saveButtonBanco, true);
 	const data = {
 		tabela: 'dados_bancarios',
 		acao: 'inserir',
@@ -19,8 +20,10 @@ export const inserirBanco = async pessoa => {
 	};
 	const banco = await model.db(data);
 	exitModal(DOM.modalBanco);
+	if (!banco.data.status) {
+		enableButton(DOM.saveButtonClientes, false);
+	}
 	resultMessage(banco.data);
-	enableButton(DOM.saveButtonBanco, true);
 };
 
 //Read

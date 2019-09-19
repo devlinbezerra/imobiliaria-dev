@@ -44,11 +44,11 @@
                         <tr>
 
                             <th data-toggle="true">Vencimento</th>
-                            <th>Contrato</th>
-                            <th>Tipo</th>
+                            <th>Imóvel</th>
+                            <th>Inquelino</th>
                             <th>Valor</th>
+                            <th data-hide="all">Contrato</th>
                             <th data-hide="all">Status</th>
-                            <th data-hide="all">Pagamento</th>
                             <th data-hide="all">Ação</th>
                         </tr>
                         </thead>

@@ -12,7 +12,7 @@
 				</a>
 				<div id="hbreadcrumb" class="pull-right m-t-lg">
 					<ol class="hbreadcrumb breadcrumb">
-						<li><a href="contratos.html">Lista</a></li>
+						<li><a href="<?php echo base_url(); ?>producao/contratos">Lista</a></li>
 						<li class="active">
 							<span>Cadastro</span>
 						</li>
@@ -45,39 +45,15 @@
 							</div>
 							<div class="col-sm-4">
 								<label>Imóvel</label>
-								<select id='imovel' class="form-control campo_contrato">
-									<option value='1'>Casa 1</option>
-									<option>Casa 2</option>
-									<option>Casa 3</option>
-									<option>Casa 4</option>
-									<option>Casa 5</option>
-									<option>Casa 6</option>
-									<option>Casa 7</option>
-								</select>
+								<select id='imovel' class="form-control campo_contrato"></select>
 							</div>
 							<div class="col-sm-4">
 								<label>Contratante</label>
-								<select id='contratante'  class="form-control campo_contrato">
-									<option value='137'>Devlin</option>
-									<option>Vinícius</option>
-									<option>João</option>
-									<option>Beatriz</option>
-									<option>Guilherme</option>
-									<option>Marcilene</option>
-									<option>Thais</option>
-								</select>
+								<select id='contratante'  class="form-control campo_contrato"></select>
 							</div>
 							<div class="col-sm-4">
 								<label>Contratado</label>
-								<select id='contratado' class="form-control campo_contrato">
-									<option value='138'>Devlin</option>
-									<option>Vinícius</option>
-									<option>João</option>
-									<option>Beatriz</option>
-									<option>Guilherme</option>
-									<option>Marcilene</option>
-									<option>Thais</option>
-								</select>
+								<select id='contratado' class="form-control campo_contrato"></select>
 							</div>
 							<div class="col-sm-4">
 								<label>Data Inicial</label>

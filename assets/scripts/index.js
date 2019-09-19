@@ -38,8 +38,9 @@ import {
 	callInquelinosSaveButton,
 	callInquelinosUpdateButton,
 	loadMenu,
-	loadList
-} from './view';
+	loadList,
+	loadSelectField
+} from './view'; // se usar "* as view" evita muita coisa
 import { autenticarUsuario } from './controllers/usuarioController';
 
 const load = modulo => {
@@ -74,6 +75,11 @@ const load = modulo => {
 			setEvent(DOM.saveButtonClientes, 'click', inserirPessoa);
 		}
 	} else if (modulo === 'imoveis' && !getValue(list)) {
+		listClientes().then(res => {
+			if (res.status) {
+				loadSelectField('proprietario', res.result);
+			}
+		});
 		if (parseInt(getValue(DOM.pk))) {
 			getImovel();
 			callInquelinosUpdateButton();
@@ -85,6 +91,21 @@ const load = modulo => {
 			setEvent(DOM.saveButtonClientes, 'click', inserirImovel);
 		}
 	} else if (modulo === 'contratos' && !getValue(list)) {
+		listClientes().then(res => {
+			if (res.status) {
+				loadSelectField('contratado', res.result);
+			}
+		});
+		listInquelinos().then(res => {
+			if (res.status) {
+				loadSelectField('contratante', res.result);
+			}
+		});
+		listImoveis().then(res => {
+			if (res.status) {
+				loadSelectField('imovel', res.result);
+			}
+		});
 		if (parseInt(getValue(DOM.pk))) {
 			getContrato();
 			callInquelinosUpdateButton();
@@ -96,6 +117,11 @@ const load = modulo => {
 			setEvent(DOM.saveButtonClientes, 'click', inserirContrato);
 		}
 	} else if (modulo === 'debitos' && !getValue(list)) {
+		listContratos().then(res => {
+			if (res.status) {
+				loadSelectField('contrato', res.result);
+			}
+		});
 		if (parseInt(getValue(DOM.pk))) {
 			getDebito();
 			callInquelinosUpdateButton();

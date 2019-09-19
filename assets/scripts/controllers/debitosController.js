@@ -22,7 +22,12 @@ export const inserirDebito = () => {
 		data: getFields(DOM.camposDebito)
 	};
 
-	const res = model.db(dados).then(res => resultMessage(res.data));
+	const res = model.db(dados).then(res => {
+		if (!res.data.status) {
+			enableButton(DOM.saveButtonClientes, false);
+		}
+		resultMessage(res.data);
+	});
 };
 
 //Read

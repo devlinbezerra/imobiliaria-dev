@@ -22,7 +22,12 @@ export const inserirContrato = () => {
 		data: getFields(DOM.camposContrato)
 	};
 
-	const res = model.db(dados).then(res => resultMessage(res.data));
+	const res = model.db(dados).then(res => {
+		if (!res.data.status) {
+			enableButton(DOM.saveButtonClientes, false);
+		}
+		resultMessage(res.data);
+	});
 };
 
 //Read

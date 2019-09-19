@@ -10,6 +10,14 @@
 						<i class="fa fa-arrow-up"></i>
 					</div>
 				</a>
+				<div id="hbreadcrumb" class="pull-right m-t-lg">
+					<ol class="hbreadcrumb breadcrumb">
+						<li><a href="<?php echo base_url(); ?>producao/debitos">Lista</a></li>
+						<li class="active">
+							<span>Cadastro</span>
+						</li>
+					</ol>
+				</div>
 				<h2 class="font-light m-b-xs">
 					Inclusão de Débitos
 				</h2>
@@ -31,14 +39,7 @@
 							</div>
 							<div class="col-sm-4">
 								<label>Contrato</label>
-								<select id='contrato' class="form-control campo_debitos">
-									<option value='1'>Contrato 11211</option>
-									<option>Contrato 12544</option>
-									<option>Contrato 36545</option>
-									<option>Contrato 98111</option>
-									<option>Contrato 98745</option>
-									<option>Contrato 68414</option>
-								</select>
+								<select id='contrato' class="form-control campo_debitos"></select>
 							</div>
 							<div class="col-sm-4">
 								<label>Tipo</label>

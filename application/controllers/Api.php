@@ -32,7 +32,11 @@ class Api extends MY_Controller {
         if($vs){
             $model = 'Model_'.$tabela;
             $this->load->model($model);
-            $dados = $this->$model->list($_POST);
+            if(sizeof($_POST)){
+                $dados = $this->$model->list($_POST);
+            }else{
+                $dados = $this->$model->list();
+            }
         }else{
             $status = array(
                 'status' => false,
