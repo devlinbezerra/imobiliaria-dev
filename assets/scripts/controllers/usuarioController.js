@@ -9,7 +9,7 @@ export const autenticarUsuario = () => {
 	model.auth(data).then(res => {
 		if (res.data) {
 			document.querySelector('.message').style.color = 'blue';
-			window.location.replace('producao/form_clientes');
+			window.location.replace('producao/clientes');
 		} else {
 			document.querySelector('.message').style.color = 'red';
 			document.querySelector('.message').textContent =

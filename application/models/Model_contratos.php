@@ -2,7 +2,7 @@
 class Model_contratos extends MY_Model {
     public function __construct(){
         $this->primary_key = 'id';
-        $this->required_fields = array('imovel','contratante','contratado');
+        $this->required_fields = array('imovel','contratante','contratado','inicio','termino');
         $this->exclusive_fields = array('imovel');
         $this->table = 'contratos';
     }

@@ -11,7 +11,50 @@ class Producao extends MY_Controller {
     public function clientes(){
         $this->load->helper('url');
         $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
         $this->load->view('clientes');
+        $this->load->view('footer');
+        $this->load->view('scripts');
+    }
+    
+    public function inquelinos(){
+        $this->load->helper('url');
+        $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
+        $this->load->view('inquelinos');
+        $this->load->view('footer');
+        $this->load->view('scripts');
+    }
+    
+    public function imoveis(){
+        $this->load->helper('url');
+        $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
+        $this->load->view('imoveis');
+        $this->load->view('footer');
+        $this->load->view('scripts');
+    }
+    
+    public function contratos(){
+        $this->load->helper('url');
+        $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
+        $this->load->view('contratos');
+        $this->load->view('footer');
+        $this->load->view('scripts');
+    }
+    
+    public function debitos(){
+        $this->load->helper('url');
+        $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
+        $this->load->view('debitos');
+        $this->load->view('footer');
         $this->load->view('scripts');
     }
 

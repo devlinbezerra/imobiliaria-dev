@@ -17,14 +17,14 @@
                         <li class='active'>
                             <span>Lista</span>
                         </li>
-                        <li><a href="<?php echo base_url(); ?>producao/form_clientes">Cadastro</a></li>
+                        <li><a href="<?php echo base_url(); ?>producao/form_imoveis">Cadastro</a></li>
                     </ol>
                 </div>
 
                 <h2 class="font-light m-b-xs">
-                    Proprietários
+                    Imóveis
                 </h2>
-                <small>Lista de proprietários cadastrados</small>
+                <small>Lista de imóveis cadastrados</small>
             </div>
         </div>
     </div>
@@ -43,14 +43,13 @@
                         <thead>
                         <tr>
 
-                            <th data-toggle="true">Nome</th>
-                            <th>Telefone Comercial</th>
-                            <th>Telefone Residencial</th>
+                            <th data-toggle="true">Descrição</th>
+                            <th>Rua</th>
+                            <th>Bairro</th>
                             <th>Cidade</th>
-                            <th data-hide="all">Estado civil</th>
-                            <th data-hide="all">Renda</th>
+                            <th data-hide="all">Matrícula</th>
+                            <th data-hide="all">Proprietário</th>
                             <th data-hide="all">Anotações</th>
-                            <th data-hide="all">Whatsapp</th>
                             <th data-hide="all">Ação</th>
                         </tr>
                         </thead>
@@ -65,8 +64,8 @@
                         </tr>
                         </tfoot>
                     </table>
-                    <input type='hidden' id='modulo' value='clientes' />
-                    <input type='hidden' id='modulo_list' value='clientes' />
+                    <input type='hidden' id='modulo' value='imoveis' />
+                    <input type='hidden' id='modulo_list' value='imoveis' />
 
 
                 </div>

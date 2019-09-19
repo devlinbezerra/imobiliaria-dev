@@ -21,7 +21,8 @@
 				<h2 class="font-light m-b-xs">
 					Cadastro de Contratos
 				</h2>
-				<small>Formulário para Cadastro de Contratos</small>
+				<small>Formulário para Cadastro de Contratos. <strong>Atenção:</strong> Não pode haver
+				mais que um contrato para o mesmo imóvel.</small>
 			</div>
 		</div>
 	</div>

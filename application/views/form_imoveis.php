@@ -12,7 +12,7 @@
 				</a>
 				<div id="hbreadcrumb" class="pull-right m-t-lg">
 					<ol class="hbreadcrumb breadcrumb">
-						<li><a href="imoveis.html">Lista</a></li>
+						<li><a href="<?php echo base_url(); ?>producao/imoveis">Lista</a></li>
 						<li class="active">
 							<span>Cadastro</span>
 						</li>

@@ -26,6 +26,17 @@ export const inserirContrato = () => {
 };
 
 //Read
+export const listContratos = async () => {
+	const prop = {
+		tabela: 'contratos',
+		acao: 'listar'
+	};
+
+	const res = await model.db(prop);
+
+	return res.data;
+};
+
 export const getContrato = () => {
 	const data = {
 		id: parseInt(getValue(DOM.pk))
@@ -70,5 +81,11 @@ export const deleteContrato = () => {
 		data
 	};
 
-	model.db(prop).then(res => resultMessage(res.data));
+	model.db(prop).then(res => {
+		if (res.data.status) {
+			window.location.replace('0');
+		} else {
+			resultMessage(res.data);
+		}
+	});
 };

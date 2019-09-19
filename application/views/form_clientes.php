@@ -14,7 +14,7 @@
 
                 <div id="hbreadcrumb" class="pull-right m-t-lg">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a href="clientes.html">Lista</a></li>
+                        <li><a href="<?php echo base_url(); ?>producao/clientes">Lista</a></li>
                         <li class='active'>
                             <span>Cadastro</span>
                         </li>

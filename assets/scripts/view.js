@@ -1,6 +1,89 @@
+/**
+ * Pendências:
+ * Ativar a o menu no caminho que fica no canto superior direito de cada módulo
+ * Impedir que ocorra mais que um registro por clicar várias vezes no botão
+ * Corrigir faixa de rodapé que se movimenta quando abre parte do desenvolvedor
+ * Programar o que será feito quando sistem retorna um erro de SQL. Por exemplo: Quando uma exclusão não dá certo devido a um foreign key
+ *
+ */
 import fg from './formGetter';
 
+export const loadMenu = modulo => {
+	const filho = document.querySelector('.' + modulo);
+	if (filho) {
+		const pai = filho.parentElement;
+		const avo = document.getElementById(pai.id).parentElement;
+		avo.classList.add('active');
+		filho.classList.add('active');
+	}
+};
+
+export const loadList = (data, modulo) => {
+	if (modulo === 'clientes' || modulo === 'inquelinos') {
+		data.forEach(el => {
+			let html = `
+			<tr>
+				<td>${el.nome}</td>
+				<td>${el.telefone_comercial}</td>
+				<td>${el.telefone_residencial}</td>
+				<td>${el.cidade}</td>
+				<td>${el.estado_civil}</td>
+				<td>${el.renda}</td>
+				<td>${el.anotacao}</td>
+				<td><a target='_blank' href='https://api.whatsapp.com/send?phone=55${el.telefone_comercial}&text=Oi%2C%20Tudo%20bem%3F'><img width='20' height='20' src='./../assets/images/general/whatsapp.png' /></a></td>
+				<td><a href='form_${modulo}/${el.id}'>Clique aqui para visualizar ou Alterar</a></td>
+			</tr>`;
+			document.querySelector('.list').insertAdjacentHTML('beforeend', html);
+		});
+	} else if (modulo === 'imoveis') {
+		data.forEach(el => {
+			let html = `
+			<tr>
+				<td>${el.descricao}</td>
+				<td>${el.rua}</td>
+				<td>${el.bairro}</td>
+				<td>${el.cidade}</td>
+				<td>${el.matricula}</td>
+				<td>${el.proprietario}</td>
+				<td>${el.anotacao}</td>
+				<td><a href='form_${modulo}/${el.id}'>Clique aqui para visualizar ou Alterar</a></td>
+			</tr>`;
+			document.querySelector('.list').insertAdjacentHTML('beforeend', html);
+		});
+	} else if (modulo === 'contratos') {
+		data.forEach(el => {
+			let html = `
+			<tr>
+				<td>${el.numero_contrato}</td>
+				<td>${el.imovel}</td>
+				<td>${el.contratante}</td>
+				<td>${el.contratado}</td>
+				<td>${el.inicio}</td>
+				<td>${el.termino}</td>
+				<td><a target='_blank' href='${el.link}'><img width='20' height='20' src='./../assets/images/general/drive.png' /></a></td>
+				<td><a href='form_${modulo}/${el.id}'>Clique aqui para visualizar ou Alterar</a></td>
+			</tr>`;
+			document.querySelector('.list').insertAdjacentHTML('beforeend', html);
+		});
+	} else if (modulo === 'debitos') {
+		data.forEach(el => {
+			let html = `
+			<tr>
+				<td>${el.vencimento}</td>
+				<td>${el.contrato}</td>
+				<td>${el.tipo}</td>
+				<td>${el.valor}</td>
+				<td>${el.status}</td>
+				<td><a href='form_${modulo}/${el.id}'>Clique aqui para visualizar ou Alterar</a></td>
+			</tr>`;
+			document.querySelector('.list').insertAdjacentHTML('beforeend', html);
+		});
+	}
+	$('#lista').footable();
+};
+
 export const DOM = {
+	local: 'localhost/facil',
 	pk: 'pk',
 	modulo: 'modulo',
 	loginButton: 'enviar',
@@ -23,7 +106,8 @@ export const DOM = {
 	mensagemBody: 'message-body',
 	modalMensagem: 'modal_resultado',
 	modalBanco: 'modal_dados_bancarios',
-	modalConfirmDelete: 'modal_confirm_delete'
+	modalConfirmDelete: 'modal_confirm_delete',
+	list: 'list'
 };
 
 export const bankButton =
@@ -90,6 +174,8 @@ export const setEvent = (el, ev, fn) => {
 export const getValue = el => {
 	if (document.getElementById(el)) {
 		return document.getElementById(el).value;
+	} else {
+		return false;
 	}
 };
 

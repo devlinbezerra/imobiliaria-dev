@@ -17,14 +17,14 @@
                         <li class='active'>
                             <span>Lista</span>
                         </li>
-                        <li><a href="<?php echo base_url(); ?>producao/form_clientes">Cadastro</a></li>
+                        <li><a href="<?php echo base_url(); ?>producao/form_inquelinos">Cadastro</a></li>
                     </ol>
                 </div>
 
                 <h2 class="font-light m-b-xs">
-                    Proprietários
+                    Inquelinos
                 </h2>
-                <small>Lista de proprietários cadastrados</small>
+                <small>Lista de Inquelinos cadastrados</small>
             </div>
         </div>
     </div>
@@ -65,8 +65,8 @@
                         </tr>
                         </tfoot>
                     </table>
-                    <input type='hidden' id='modulo' value='clientes' />
-                    <input type='hidden' id='modulo_list' value='clientes' />
+                    <input type='hidden' id='modulo' value='inquelinos' />
+                    <input type='hidden' id='modulo_list' value='inquelinos' />
 
 
                 </div>

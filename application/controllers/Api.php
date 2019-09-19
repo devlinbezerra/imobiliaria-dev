@@ -26,6 +26,22 @@ class Api extends MY_Controller {
     }
 
     //2. Read
+    public function listar($tabela){
+        $vs = parent::validate_session();
+        parent::json_post();
+        if($vs){
+            $model = 'Model_'.$tabela;
+            $this->load->model($model);
+            $dados = $this->$model->list($_POST);
+        }else{
+            $status = array(
+                'status' => false,
+                'message' => 'Sessão expirou, por favor faça login novamente'
+            );
+            echo json_encode($status);
+        }
+    }
+
     public function get($tabela){
         $vs = parent::validate_session();
         parent::json_post();

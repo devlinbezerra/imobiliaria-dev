@@ -91,6 +91,34 @@ const inserirPessoa = async () => {
 };
 
 //Read
+const listClientes = async () => {
+	const prop = {
+		tabela: 'pessoa',
+		acao: 'listar',
+		data: {
+			tipo: 'cliente'
+		}
+	};
+
+	const res = await model.db(prop);
+
+	return res.data;
+};
+
+const listInquelinos = async () => {
+	const prop = {
+		tabela: 'pessoa',
+		acao: 'listar',
+		data: {
+			tipo: 'inquelino'
+		}
+	};
+
+	const res = await model.db(prop);
+
+	return res.data;
+};
+
 const getPessoa = async () => {
 	const data = {
 		id: parseInt(getValue(DOM.pk))
@@ -256,7 +284,7 @@ const excluirPessoa = async () => {
 
 			const excluirConjuge = await model.db(prop);
 			resultMessage(excluirConjuge.data);
-			window.location.replace('0');
+			window.location.replace('clientes');
 		} else {
 			resultMessage(excluir.data);
 		}
@@ -265,4 +293,12 @@ const excluirPessoa = async () => {
 	}
 };
 
-export { inserirPessoa, getPessoa, excluirPessoa, alterarPessoa, alterarBanco };
+export {
+	inserirPessoa,
+	listClientes,
+	listInquelinos,
+	getPessoa,
+	excluirPessoa,
+	alterarPessoa,
+	alterarBanco
+};

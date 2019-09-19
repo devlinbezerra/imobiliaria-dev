@@ -1,4 +1,6 @@
 import {
+	listClientes,
+	listInquelinos,
 	getPessoa,
 	inserirPessoa,
 	alterarBanco,
@@ -6,18 +8,21 @@ import {
 	excluirPessoa
 } from './controllers/pessoaController';
 import {
+	listImoveis,
 	inserirImovel,
 	getImovel,
 	deleteImovel,
 	updateImovel
 } from './controllers/imoveisController';
 import {
+	listContratos,
 	inserirContrato,
 	getContrato,
 	deleteContrato,
 	updateContrato
 } from './controllers/contratosController';
 import {
+	listDebitos,
 	inserirDebito,
 	getDebito,
 	deleteDebito,
@@ -31,14 +36,18 @@ import {
 	setUpdatedFields,
 	getValue,
 	callInquelinosSaveButton,
-	callInquelinosUpdateButton
+	callInquelinosUpdateButton,
+	loadMenu,
+	loadList
 } from './view';
 import { autenticarUsuario } from './controllers/usuarioController';
 
 const load = modulo => {
+	loadMenu(modulo);
+	const list = 'modulo_' + DOM.list;
 	if (modulo === 'login') {
 		setEvent(DOM.loginButton, 'click', autenticarUsuario);
-	} else if (modulo === 'clientes') {
+	} else if (modulo === 'clientes' && !getValue(list)) {
 		if (parseInt(getValue(DOM.pk))) {
 			getPessoa();
 			callClientesUpdateButton();
@@ -52,7 +61,7 @@ const load = modulo => {
 			callClientesSaveButton();
 			setEvent(DOM.saveButtonClientes, 'click', inserirPessoa);
 		}
-	} else if (modulo === 'inquelinos') {
+	} else if (modulo === 'inquelinos' && !getValue(list)) {
 		if (parseInt(getValue(DOM.pk))) {
 			getPessoa();
 			callInquelinosUpdateButton();
@@ -64,7 +73,7 @@ const load = modulo => {
 			callInquelinosSaveButton();
 			setEvent(DOM.saveButtonClientes, 'click', inserirPessoa);
 		}
-	} else if (modulo === 'imoveis') {
+	} else if (modulo === 'imoveis' && !getValue(list)) {
 		if (parseInt(getValue(DOM.pk))) {
 			getImovel();
 			callInquelinosUpdateButton();
@@ -75,7 +84,7 @@ const load = modulo => {
 			callInquelinosSaveButton();
 			setEvent(DOM.saveButtonClientes, 'click', inserirImovel);
 		}
-	} else if (modulo === 'contratos') {
+	} else if (modulo === 'contratos' && !getValue(list)) {
 		if (parseInt(getValue(DOM.pk))) {
 			getContrato();
 			callInquelinosUpdateButton();
@@ -86,7 +95,7 @@ const load = modulo => {
 			callInquelinosSaveButton();
 			setEvent(DOM.saveButtonClientes, 'click', inserirContrato);
 		}
-	} else if (modulo === 'debitos') {
+	} else if (modulo === 'debitos' && !getValue(list)) {
 		if (parseInt(getValue(DOM.pk))) {
 			getDebito();
 			callInquelinosUpdateButton();
@@ -97,6 +106,46 @@ const load = modulo => {
 			callInquelinosSaveButton();
 			setEvent(DOM.saveButtonClientes, 'click', inserirDebito);
 		}
+	} else if (modulo === 'clientes' && getValue(list) === 'clientes') {
+		listClientes().then(res => {
+			if (res.status) {
+				loadList(res.result, modulo);
+			} else {
+				console.log('Deu pau!');
+			}
+		});
+	} else if (modulo === 'inquelinos' && getValue(list) === 'inquelinos') {
+		listInquelinos().then(res => {
+			if (res.status) {
+				loadList(res.result, modulo);
+			} else {
+				console.log('Deu pau!');
+			}
+		});
+	} else if (modulo === 'contratos' && getValue(list) === 'contratos') {
+		listContratos().then(res => {
+			if (res.status) {
+				loadList(res.result, modulo);
+			} else {
+				console.log('Deu pau!');
+			}
+		});
+	} else if (modulo === 'debitos' && getValue(list) === 'debitos') {
+		listDebitos().then(res => {
+			if (res.status) {
+				loadList(res.result, modulo);
+			} else {
+				console.log('Deu pau!');
+			}
+		});
+	} else if (modulo === 'imoveis' && getValue(list) === 'imoveis') {
+		listImoveis().then(res => {
+			if (res.status) {
+				loadList(res.result, modulo);
+			} else {
+				console.log('Deu pau!');
+			}
+		});
 	}
 };
 load(getValue(DOM.modulo));

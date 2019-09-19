@@ -81,6 +81,23 @@ class MY_Model extends CI_Model {
         }   
     }
 
+    public function list($where = 'id > 0'){
+        $res = $this->db->get_where($this->table, $where)->result();
+        if(sizeof($res) > 0){
+            $data = array (
+                'status' => true,
+                'message' => 'A busca resultou em '.sizeof($res).' ocorrêcia(s).',
+                'result' => $res
+            );
+        }else{
+            $data = array (
+                'status' => false,
+                'message' => 'Não há resultados para essa busca.'
+            );
+        }
+        echo json_encode($data);
+    }
+
     public function get($data){
         $res = $this->db->get_where($this->table,$data);
         $data = $res->result();

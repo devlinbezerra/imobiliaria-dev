@@ -17,14 +17,14 @@
                         <li class='active'>
                             <span>Lista</span>
                         </li>
-                        <li><a href="<?php echo base_url(); ?>producao/form_clientes">Cadastro</a></li>
+                        <li><a href="<?php echo base_url(); ?>producao/form_contratos">Cadastro</a></li>
                     </ol>
                 </div>
 
                 <h2 class="font-light m-b-xs">
-                    Proprietários
+                    Contratos
                 </h2>
-                <small>Lista de proprietários cadastrados</small>
+                <small>Lista de contratos cadastrados</small>
             </div>
         </div>
     </div>
@@ -43,14 +43,13 @@
                         <thead>
                         <tr>
 
-                            <th data-toggle="true">Nome</th>
-                            <th>Telefone Comercial</th>
-                            <th>Telefone Residencial</th>
-                            <th>Cidade</th>
-                            <th data-hide="all">Estado civil</th>
-                            <th data-hide="all">Renda</th>
-                            <th data-hide="all">Anotações</th>
-                            <th data-hide="all">Whatsapp</th>
+                            <th data-toggle="true">Número</th>
+                            <th>Imóvel</th>
+                            <th>Contratante</th>
+                            <th>Contratado</th>
+                            <th data-hide="all">Início</th>
+                            <th data-hide="all">Término</th>
+                            <th data-hide="all">Link</th>
                             <th data-hide="all">Ação</th>
                         </tr>
                         </thead>
@@ -65,8 +64,8 @@
                         </tr>
                         </tfoot>
                     </table>
-                    <input type='hidden' id='modulo' value='clientes' />
-                    <input type='hidden' id='modulo_list' value='clientes' />
+                    <input type='hidden' id='modulo' value='contratos' />
+                    <input type='hidden' id='modulo_list' value='contratos' />
 
 
                 </div>

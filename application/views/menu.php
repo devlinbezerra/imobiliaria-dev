@@ -21,20 +21,20 @@
         </div>
 
         <ul class="nav" id="side-menu">
-            <li class='active'>
+            <li class='cadastro'>
                 <a href="#"><span class="nav-label">Cadastro</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level">
-                        <li class='active'><a href="<?php echo base_url(); ?>producao/form_clientes">Proprietários</a></li>
-                        <li><a href="<?php echo base_url(); ?>producao/form_imoveis">Imóveis</a></li>
-                        <li><a href="<?php echo base_url(); ?>producao/form_inquelinos">Inquelinos</a></li>
-                        <li><a href="<?php echo base_url(); ?>producao/form_contratos">Contratos</a></li>
-                        <li><a href="<?php echo base_url(); ?>producao/form_debitos">Débitos</a></li>        
+                <ul id='lista_cadastro' class="nav nav-second-level">
+                        <li class='clientes'><a href="<?php echo base_url(); ?>producao/clientes">Proprietários</a></li>
+                        <li class='imoveis'><a href="<?php echo base_url(); ?>producao/imoveis">Imóveis</a></li>
+                        <li class='inquelinos'><a href="<?php echo base_url(); ?>producao/inquelinos">Inquelinos</a></li>
+                        <li class='contratos'><a href="<?php echo base_url(); ?>producao/contratos">Contratos</a></li>
+                        <li class='debitos'><a href="<?php echo base_url(); ?>producao/debitos">Débitos</a></li>        
                 </ul>
             </li>
-            <li>
+            <li class='relatorios'>
                 <a href="#"><span class="nav-label">Relatórios</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level">
-                    <li><a href="report_debitos.html">Débitos</a></li>
+                <ul id='lista_relatorios' class="nav nav-second-level">
+                    <li class='relatorio_debitos' ><a href="report_debitos.html">Débitos</a></li>
                 </ul>
             </li>
         </ul>

@@ -17,14 +17,14 @@
                         <li class='active'>
                             <span>Lista</span>
                         </li>
-                        <li><a href="<?php echo base_url(); ?>producao/form_clientes">Cadastro</a></li>
+                        <li><a href="<?php echo base_url(); ?>producao/form_debitos">Cadastro</a></li>
                     </ol>
                 </div>
 
                 <h2 class="font-light m-b-xs">
-                    Proprietários
+                    Débitos
                 </h2>
-                <small>Lista de proprietários cadastrados</small>
+                <small>Lista de Débitos cadastrados</small>
             </div>
         </div>
     </div>
@@ -43,14 +43,12 @@
                         <thead>
                         <tr>
 
-                            <th data-toggle="true">Nome</th>
-                            <th>Telefone Comercial</th>
-                            <th>Telefone Residencial</th>
-                            <th>Cidade</th>
-                            <th data-hide="all">Estado civil</th>
-                            <th data-hide="all">Renda</th>
-                            <th data-hide="all">Anotações</th>
-                            <th data-hide="all">Whatsapp</th>
+                            <th data-toggle="true">Vencimento</th>
+                            <th>Contrato</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                            <th data-hide="all">Status</th>
+                            <th data-hide="all">Pagamento</th>
                             <th data-hide="all">Ação</th>
                         </tr>
                         </thead>
@@ -65,8 +63,8 @@
                         </tr>
                         </tfoot>
                     </table>
-                    <input type='hidden' id='modulo' value='clientes' />
-                    <input type='hidden' id='modulo_list' value='clientes' />
+                    <input type='hidden' id='modulo' value='debitos' />
+                    <input type='hidden' id='modulo_list' value='debitos' />
 
 
                 </div>

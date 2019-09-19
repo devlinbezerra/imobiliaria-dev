@@ -26,6 +26,17 @@ export const inserirDebito = () => {
 };
 
 //Read
+export const listDebitos = async () => {
+	const prop = {
+		tabela: 'debitos',
+		acao: 'listar'
+	};
+
+	const res = await model.db(prop);
+
+	return res.data;
+};
+
 export const getDebito = () => {
 	const data = {
 		id: parseInt(getValue(DOM.pk))
@@ -70,5 +81,11 @@ export const deleteDebito = () => {
 		data
 	};
 
-	model.db(prop).then(res => resultMessage(res.data));
+	model.db(prop).then(res => {
+		if (res.data.status) {
+			window.location.replace('0');
+		} else {
+			resultMessage(res.data);
+		}
+	});
 };
