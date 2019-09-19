@@ -117,22 +117,6 @@ class Api extends MY_Controller {
         }
     }
 
-    public function testar_session(){
-        parent::json_post();
-        if(parent::validate_session()){
-            return print_r($_SESSION);
-        }else{
-            echo 'Sem sessão';
-        }
-    }
-
-    public function testjs (){
-        parent::json_post();
-        $test = array('nome'=>'devlin','esposa'=>'karoline','filhas'=> array('nome'=>'Rebeca','idade'=>21));
-        $res = json_encode($test);
-        echo $res;
-    }
-
     //Relatórios
 
     

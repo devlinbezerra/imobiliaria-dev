@@ -14,7 +14,7 @@
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a href="">Perfil</a></li>
                         <li class="divider"></li>
-                        <li><a href="index.html">Sair</a></li>
+                        <li><a href="<?php echo base_url();?>">Sair</a></li>
                     </ul>
                 </div>
             </div>
@@ -31,12 +31,12 @@
                         <li class='debitos'><a href="<?php echo base_url(); ?>producao/debitos">Débitos</a></li>        
                 </ul>
             </li>
-            <li class='relatorios'>
+            <!-- <li class='relatorios'>
                 <a href="#"><span class="nav-label">Relatórios</span><span class="fa arrow"></span> </a>
                 <ul id='lista_relatorios' class="nav nav-second-level">
                     <li class='relatorio_debitos' ><a href="report_debitos.html">Débitos</a></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </div>
 </aside>
