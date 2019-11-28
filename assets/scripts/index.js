@@ -26,7 +26,8 @@ import {
 	inserirDebito,
 	getDebito,
 	deleteDebito,
-	updateDebito
+	updateDebito,
+	baixaDebito
 } from './controllers/debitosController';
 import {
 	DOM,
@@ -39,9 +40,11 @@ import {
 	callInquelinosUpdateButton,
 	loadMenu,
 	loadList,
-	loadSelectField
+	loadSelectField,
+	callDebitosUpdateButton
 } from './view'; // se usar "* as view" evita muita coisa
 import { autenticarUsuario } from './controllers/usuarioController';
+import * as report from './controllers/relatoriosController';
 
 const load = modulo => {
 	loadMenu(modulo);
@@ -124,10 +127,12 @@ const load = modulo => {
 		});
 		if (parseInt(getValue(DOM.pk))) {
 			getDebito();
-			callInquelinosUpdateButton();
+			callDebitosUpdateButton();
 			setEvent(DOM.buttonConfirmDelete, 'click', deleteDebito);
 			setEvent(DOM.buttonUpdate, 'click', updateDebito);
+			setEvent(DOM.baixaButton, 'click', baixaDebito);
 			setUpdatedFields(DOM.camposDebito);
+			setUpdatedFields(DOM.camposBaixaDebito);
 		} else {
 			callInquelinosSaveButton();
 			setEvent(DOM.saveButtonClientes, 'click', inserirDebito);
@@ -166,6 +171,35 @@ const load = modulo => {
 		});
 	} else if (modulo === 'imoveis' && getValue(list) === 'imoveis') {
 		listImoveis().then(res => {
+			if (res.status) {
+				loadList(res.result, modulo);
+			} else {
+				console.log('Deu pau!');
+			}
+		});
+	} else if (modulo === 'debitos_rep' && getValue(list) === 'debitos_rep') {
+		listImoveis().then(res => {
+			if (res.status) {
+				loadSelectField('i.id', res.result);
+			} else {
+				console.log('Deu pau!');
+			}
+		});
+		listClientes().then(res => {
+			if (res.status) {
+				loadSelectField('po.id', res.result);
+			} else {
+				console.log('Deu pau');
+			}
+		});
+		listInquelinos().then(res => {
+			if (res.status) {
+				loadSelectField('pe.id', res.result);
+			} else {
+				console.log('Deu pau');
+			}
+		});
+		report.loadDebitosReport().then(res => {
 			if (res.status) {
 				loadList(res.result, modulo);
 			} else {

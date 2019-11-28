@@ -31,12 +31,12 @@
                         <li class='debitos'><a href="<?php echo base_url(); ?>producao/debitos">Débitos</a></li>        
                 </ul>
             </li>
-            <!-- <li class='relatorios'>
+            <li class='relatorios'>
                 <a href="#"><span class="nav-label">Relatórios</span><span class="fa arrow"></span> </a>
                 <ul id='lista_relatorios' class="nav nav-second-level">
-                    <li class='relatorio_debitos' ><a href="report_debitos.html">Débitos</a></li>
+                    <li class='debitos_rep' ><a href="<?php echo base_url(); ?>producao/debitos_rep">Débitos</a></li>
                 </ul>
-            </li> -->
+            </li>
         </ul>
     </div>
 </aside>

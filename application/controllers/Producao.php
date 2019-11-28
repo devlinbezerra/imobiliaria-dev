@@ -160,6 +160,23 @@ class Producao extends MY_Controller {
         $this->load->view('menu');
         $this->load->view('form_debitos', $data);
         $this->load->view('footer');
+        $this->load->view('modal_baixa');
+        $this->load->view('modal_resultado');
+        $this->load->view('modal_confirm_delete');
+        $this->load->view('scripts');
+        }else{
+            header('location:'.$this->location);
+        }
+    }
+
+    public function debitos_rep(){
+        if(parent::validate_session()){
+        $this->load->helper('url');
+        $this->load->view('headers');
+        $this->load->view('toolbar');
+        $this->load->view('menu');
+        $this->load->view('debitos_rep');
+        $this->load->view('footer');
         $this->load->view('modal_resultado');
         $this->load->view('modal_confirm_delete');
         $this->load->view('scripts');

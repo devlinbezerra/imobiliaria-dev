@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>/assets/vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>/assets/vendor/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>/assets/vendor/fooTable/css/footable.core.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>/assets/vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css" />
 
     <!-- App styles -->
     <link rel="stylesheet" href="<?php echo base_url();?>/assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />

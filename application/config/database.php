@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> 'mysql:host=127.0.0.1;dbname=facil',
 	'hostname' => '',
 	'username' => 'root',
-	'password' => 'Rdkr*23311709',
+	'password' => 'cddr2004',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',

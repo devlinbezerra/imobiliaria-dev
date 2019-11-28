@@ -7,7 +7,8 @@ import {
 	textHtml,
 	popularCampos,
 	DOM,
-	updatedData
+	updatedData,
+	exitModal
 } from './../view';
 import model from './../model';
 
@@ -72,6 +73,20 @@ export const updateDebito = () => {
 	};
 
 	model.db(prop).then(res => resultMessage(res.data));
+};
+
+//Baixar
+export const baixaDebito = () => {
+	const campos = getFields(DOM.camposBaixaDebito);
+	const data = Object.assign({ id: getValue(DOM.pk) }, campos);
+	const prop = {
+		tabela: 'debitos',
+		acao: 'update',
+		data
+	};
+	console.log(prop);
+	model.db(prop).then(res => resultMessage(res.data));
+	exitModal('modal_baixa');
 };
 
 //Delete

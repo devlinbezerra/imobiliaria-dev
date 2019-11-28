@@ -118,6 +118,25 @@ class Api extends MY_Controller {
     }
 
     //Relatórios
-
+    public function relatorio($tabela){
+        $vs = parent::validate_session();
+        // $vs = true;
+        parent::json_post();
+        if($vs){
+            $model = 'Model_'.$tabela;
+            $this->load->model($model);
+            if(sizeof($_POST)){
+                $dados = $this->$model->report($_POST);
+            }else{
+                $dados = $this->$model->report();
+            }
+        }else{
+            $status = array(
+                'status' => false,
+                'message' => 'Sessão expirou, por favor faça login novamente'
+            );
+            echo json_encode($status);
+        }
+    }
     
 }
